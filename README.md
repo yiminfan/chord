@@ -12,7 +12,9 @@ I wanted to do a section on Chord Diagrams for my book, [Data Is Beautiful](http
 
 With Python in mind, there are many libraries available for creating Chord diagrams, such as [Plotly](https://plotly.com/python/v3/filled-chord-diagram/), [Bokeh](http://docs.bokeh.org/en/0.12.0/docs/gallery/chord_chart.html), and a few that are lesser-known. However, I wanted to use the implementation from [d3](https://observablehq.com/@d3/chord-diagram?collection=@d3/d3-chord) because it can be customised to be highly interactive and to look beautiful.
 
-I couldn't find anything that ticked all the boxes, [so I made](https://pypi.org/project/chord/) a wrapper around d3-chord myself. It took some time to get it working, but I wanted to hide away everything behind a single constructor and method call. The tricky part was enabling multiple chord diagrams on the same page, and then loading resources in a way that would support Jupyter Notebooks.
+I couldn't find anything that ticked all the boxes, [so I made](https://pypi.org/project/chord/) a wrapper around d3-chord myself. It took some time to get it working, but I wanted to hide away everything behind a single constructor and method call. The tricky part was enabling multiple chord diagrams on the same page, and then loading resources in a way that would support Jupyter Lab.
+
+The primary support is for `Jupyter Lab` (not the older `Jupyter Notebook`).
 
 # Installation
 
@@ -121,6 +123,20 @@ Chord(matrix, names, opacity=0.1).show()
 
 ![Example Image](images/9.png)
 
+# Diagram Size
+
+We can change the maximum diagram size by specifying a width.
+
+```python
+Chord(matrix, names, width=400).show()
+```
+
+We can change the padding between chord segments by specifying the padding.
+
+```python
+Chord(matrix, names, padding=0.3).show()
+```
+
 <div class="footnote">
 <hr>
 <ol>
@@ -137,3 +153,7 @@ Chord(matrix, names, opacity=0.1).show()
 - `chord` (Python), Shahin Rostami.
 
 ![Example Image](images/1.gif)
+
+```
+
+```

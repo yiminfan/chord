@@ -29,6 +29,7 @@ class Chord(object):
         colors="d3.schemeSet1",
         opacity=0.8,
         padding=0.01,
+        width=700,
         label_color="#454545",
         wrap_labels=True,
     ):
@@ -38,15 +39,15 @@ class Chord(object):
         self.colors = colors
         self.opacity = opacity
         self.padding = padding
+        self.width = width
         self.label_color = label_color
         self.wrap_labels = wrap_labels
 
     def __str__(self):
         return self.html
 
-    """Generates the HTML using the Mako template."""
-
     def render_html(self):
+        """Generates the HTML using the Mako template."""
         self.tag_id = "chart-" + str(uuid.uuid4())[:8]
         self.html = Template(Chord.template).render(
             colors=self.colors,
@@ -54,22 +55,21 @@ class Chord(object):
             matrix=self.matrix,
             names=self.names,
             padding=self.padding,
+            width=self.width,
             label_color=self.label_color,
             tag_id=self.tag_id,
             wrap_labels="true" if self.wrap_labels else "false",
         )
 
-    """Outputs the generated HTML to a HTML file. """
-
     def to_html(self, filename="out.html"):
+        """Outputs the generated HTML to a HTML file. """
         self.render_html()
         file = open(filename, "w")
         file.write(self.html)
         file.close()
 
-    """Outputs the generated HTML to a Jupyter Notebook output cell."""
-
     def show(self):
+        """Outputs the generated HTML to a Jupyter Lab output cell."""
         self.render_html()
         from IPython.display import display, HTML
 
