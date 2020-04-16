@@ -20,6 +20,7 @@ mako.runtime.UNDEFINED = ""
 
 class Chord(object):
     template_url = "https://shahinrostami.com/assets/chord/chord.tmpl"
+
     template = urllib.request.urlopen(template_url).read()
 
     def __init__(
@@ -32,6 +33,8 @@ class Chord(object):
         width=700,
         label_color="#454545",
         wrap_labels=True,
+        margin=0,
+        credit=False,
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -42,6 +45,8 @@ class Chord(object):
         self.width = width
         self.label_color = label_color
         self.wrap_labels = wrap_labels
+        self.margin = margin
+        self.credit = credit
 
     def __str__(self):
         return self.html
@@ -59,6 +64,8 @@ class Chord(object):
             label_color=self.label_color,
             tag_id=self.tag_id,
             wrap_labels="true" if self.wrap_labels else "false",
+            credit="true" if self.credit else "false",
+            margin=self.margin,
         )
 
     def to_html(self, filename="out.html"):

@@ -24,6 +24,39 @@ Available on https://pypi.org/chord through `pip`:
 pip install chord
 ```
 
+# Usage
+
+## Python
+
+## Python (HTML file)
+
+```python
+Chord(matrix, names).to_html()
+```
+
+## Jupyter Lab (Notebook)
+
+```python
+Chord(matrix, names).show()
+```
+
+## Defaults
+
+```python
+Chord(self,
+        matrix,
+        names,
+        colors="d3.schemeSet1",
+        opacity=0.8,
+        padding=0.01,
+        width=700,
+        label_color="#454545",
+        wrap_labels=True,
+        margin=0,
+        credit=False,
+    )
+```
+
 # Examples
 
 You can see the actual interactive examples [on this page](https://shahinrostami.com/posts/statistics/data-is-beautiful/chord-diagrams/). The below examples are screenshots.
