@@ -35,6 +35,8 @@ class Chord(object):
         wrap_labels=True,
         margin=0,
         credit=False,
+        font_size="16px",
+        font_size_large="20px",
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -47,6 +49,8 @@ class Chord(object):
         self.wrap_labels = wrap_labels
         self.margin = margin
         self.credit = credit
+        self.font_size = font_size
+        self.font_size_large = font_size_large
 
     def __str__(self):
         return self.html
@@ -66,6 +70,8 @@ class Chord(object):
             wrap_labels="true" if self.wrap_labels else "false",
             credit="true" if self.credit else "false",
             margin=self.margin,
+            font_size=self.font_size,
+            font_size_large=self.font_size_large,
         )
 
     def to_html(self, filename="out.html"):
