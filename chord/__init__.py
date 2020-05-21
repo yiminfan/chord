@@ -19,7 +19,7 @@ mako.runtime.UNDEFINED = ""
 
 
 class Chord(object):
-    template_url = "https://shahinrostami.com/assets/chord/chord.tmpl"
+    template_url = "https://shahinrostami.com/assets/chord/chord_0_0_12.tmpl"
 
     template = urllib.request.urlopen(template_url).read()
 
