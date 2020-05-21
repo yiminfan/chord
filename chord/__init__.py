@@ -37,7 +37,6 @@ class Chord(object):
         credit=False,
         font_size="16px",
         font_size_large="20px",
-        details=[],
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -52,7 +51,6 @@ class Chord(object):
         self.credit = credit
         self.font_size = font_size
         self.font_size_large = font_size_large
-        self.details = details
 
     def __str__(self):
         return self.html
@@ -74,7 +72,6 @@ class Chord(object):
             margin=self.margin,
             font_size=self.font_size,
             font_size_large=self.font_size_large,
-            details=self.details,
         )
 
     def to_html(self, filename="out.html"):
