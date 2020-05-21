@@ -1,4 +1,4 @@
-**NOTICE** Please update to the latest version of `chord`. Backwards compatabiility has been introduced, so from this version onwards, new versions won't break older ones!
+**NOTICE** Please update to the latest version of `chord`. Backwards compatability has been introduced, so from this version onwards, new versions won't break older ones!
 
 ![Example Image](images/2.gif)
 
