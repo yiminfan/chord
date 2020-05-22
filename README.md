@@ -1,4 +1,6 @@
-**NOTICE** Please update to the latest version of `chord`. Backwards compatability has been introduced, so from this version onwards, new versions won't break older ones!
+- **22 May 2020**  Optimisation and bug fixes have massively improved the interactive performance of the visualisation.
+
+- **21 May 2020** Please update to the latest version of `chord`. Backwards compatability has been introduced, so from this version onwards, new versions won't break older ones!
 
 ![Example Image](images/2.gif)
 
