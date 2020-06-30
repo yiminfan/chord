@@ -18,7 +18,7 @@ The primary support is for `Jupyter Lab` (not the older `Jupyter Notebook`).
 
 # Installation
 
-Available on https://pypi.org/chord through `pip`:
+Available on https://pypi.org/project/chord/ through `pip`:
 
 ```bash
 pip install chord
