@@ -1,3 +1,11 @@
+Changelog:
+
+- **29 June 2020** - Optimisation and bug fixes to the tooltip have massively improved the interactive performance of the visualisation (**Rebuild your chord diagrams** to take advantage of this change).
+
+- **22 May 2020** - Optimisation and bug fixes have massively improved the interactive performance of the visualisation (**Rebuild your chord diagrams** to take advantage of this change).
+
+- **21 May 2020** - Please update to the latest version of `chord`. Backwards compatability has been introduced, so from this version onwards, new versions won't break older ones!
+
 ![Example Image](images/2.gif)
 
 # Introduction
