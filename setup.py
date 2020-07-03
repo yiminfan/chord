@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setup(
     name="chord",
-    version="0.0.14",
+    version="0.0.15",
     description="Python wrapper around d3-chord",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/shahinrostami/chord",
     author="Dr. Shahin Rostami",
     author_email="hello@shahinrostami.com",
-    license="MIT",
+    license="AGPLv3+",
     packages=["chord"],
     zip_safe=False,
     install_requires=["mako", "uuid"],
