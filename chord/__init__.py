@@ -1,4 +1,5 @@
-"""Chord - Python wrapper around d3-chord
+"""
+Chord - Python wrapper around d3-chord
 
 This package enables the generation of Chord diagrams. They can be saved 
 directly to HTML files or displayed in a Jupyter Notebook output cell.
@@ -7,6 +8,23 @@ Copyright 2020, Dr. Shahin Rostami
 http://shahinrostami.com
 https://github.com/shahinrostami/chord
 https://pypi.org/project/chord/
+"""
+""" LICENSE
+Chord (https://github.com/shahinrostami/chord) generates interactive chord diagrams.
+Copyright (C) 2020  Dr. Shahin Rostami
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from mako.template import Template
