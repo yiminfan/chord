@@ -37,6 +37,8 @@ mako.runtime.UNDEFINED = ""
 
 
 class Chord(object):
+    user = ""
+    key = ""
     template_url = "https://shahinrostami.com/assets/chord/chord_0_0_12.tmpl"
 
     template = urllib.request.urlopen(template_url).read()
@@ -55,6 +57,18 @@ class Chord(object):
         credit=False,
         font_size="16px",
         font_size_large="20px",
+        details=[],
+        details_thumbs=[],
+        thumbs_width=85,
+        thumbs_margin=5,
+        thumbs_font_size=14,
+        popup_width=350,
+        noun="instances",
+        details_separator=", ",
+        divide=False,
+        divide_idx=0,
+        divide_size=0.5,
+        instances=0,
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -69,27 +83,79 @@ class Chord(object):
         self.credit = credit
         self.font_size = font_size
         self.font_size_large = font_size_large
+        self.details = details
+        self.details_thumbs = details_thumbs
+        self.thumbs_width = thumbs_width
+        self.thumbs_margin = thumbs_margin
+        self.thumbs_font_size = thumbs_font_size
+        self.popup_width = popup_width
+        self.noun = noun
+        self.details_separator = details_separator
+        self.divide = divide
+        self.divide_idx = divide_idx
+        self.divide_size = divide_size
+        self.instances = instances
 
     def __str__(self):
         return self.html
 
     def render_html(self):
-        """Generates the HTML using the Mako template."""
-        self.tag_id = "chart-" + str(uuid.uuid4())[:8]
-        self.html = Template(Chord.template).render(
-            colors=self.colors,
-            opacity=self.opacity,
-            matrix=self.matrix,
-            names=self.names,
-            padding=self.padding,
-            width=self.width,
-            label_color=self.label_color,
-            tag_id=self.tag_id,
-            wrap_labels="true" if self.wrap_labels else "false",
-            credit="true" if self.credit else "false",
-            margin=self.margin,
-            font_size=self.font_size,
-            font_size_large=self.font_size_large,
+        if(Chord.user and Chord.key):
+            """Generates the HTML using the ChordPRO service."""
+            import requests
+            url = "https://api.shahin.dev/chord"
+            payload = {
+                'colors':self.colors,
+                'opacity':self.opacity,
+                'matrix':self.matrix,
+                'names':self.names,
+                'padding':self.padding,
+                'width':self.width,
+                'label_color':self.label_color,
+                'wrap_labels':"true" if self.wrap_labels else "false",
+                'credit':"true" if self.credit else "false",
+                'margin':self.margin,
+                'font_size':self.font_size,
+                'font_size_large':self.font_size_large,
+                'details':self.details,
+                'details_thumbs':self.details_thumbs,
+                'thumbs_font_size':self.thumbs_font_size,
+                'thumbs_width':self.thumbs_width,
+                'thumbs_margin':self.thumbs_margin,
+                'popup_width':self.popup_width,
+                'noun':self.noun,
+                'details_separator':self.details_separator,
+                'divide':"true" if self.divide else "false",
+                'divide_idx':self.divide_idx,
+                'divide_size':self.divide_size,
+                'instances':self.instances
+            }
+
+            result = requests.post(url, json=payload, auth=(Chord.user,Chord.key))
+
+            if(result.status_code == 200):
+                self.html = result.text
+            else:
+                raise Exception("API error.")
+
+
+        else:
+            """Generates the HTML using the Mako template."""
+            self.tag_id = "chart-" + str(uuid.uuid4())[:8]
+            self.html = Template(Chord.template).render(
+                colors=self.colors,
+                opacity=self.opacity,
+                matrix=self.matrix,
+                names=self.names,
+                padding=self.padding,
+                width=self.width,
+                label_color=self.label_color,
+                tag_id=self.tag_id,
+                wrap_labels="true" if self.wrap_labels else "false",
+                credit="true" if self.credit else "false",
+                margin=self.margin,
+                font_size=self.font_size,
+                font_size_large=self.font_size_large,
         )
 
     def to_html(self, filename="out.html"):
