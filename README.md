@@ -17,7 +17,9 @@
 
 # Changelog:
 
-- **14 July 2020** - `ChordPRO` can now be enabled by entering your [license key](https://store.shahinrostami.com/product/chord-pro/).
+- **20 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports asymmetric mode using `symmetric=False`! You can also overide the `verb` used in the popup.
+
+- **14 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) can now be enabled by entering your [license key](https://store.shahinrostami.com/product/chord-pro/).
 
 
 - **29 June 2020** - Optimisation and bug fixes to the tooltip have massively improved the interactive performance of the visualisation (**Rebuild your chord diagrams** to take advantage of this change).
