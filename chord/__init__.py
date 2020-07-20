@@ -69,6 +69,8 @@ class Chord(object):
         divide_idx=0,
         divide_size=0.5,
         instances=0,
+        verb="occur together in",
+        symmetric=True,
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -95,49 +97,53 @@ class Chord(object):
         self.divide_idx = divide_idx
         self.divide_size = divide_size
         self.instances = instances
+        self.verb = verb
+        self.symmetric = symmetric
 
     def __str__(self):
         return self.html
 
     def render_html(self):
-        if(Chord.user and Chord.key):
+        if Chord.user and Chord.key:
             """Generates the HTML using the ChordPRO service."""
             import requests
+
             url = "https://api.shahin.dev/chord"
             payload = {
-                'colors':self.colors,
-                'opacity':self.opacity,
-                'matrix':self.matrix,
-                'names':self.names,
-                'padding':self.padding,
-                'width':self.width,
-                'label_color':self.label_color,
-                'wrap_labels':"true" if self.wrap_labels else "false",
-                'credit':"true" if self.credit else "false",
-                'margin':self.margin,
-                'font_size':self.font_size,
-                'font_size_large':self.font_size_large,
-                'details':self.details,
-                'details_thumbs':self.details_thumbs,
-                'thumbs_font_size':self.thumbs_font_size,
-                'thumbs_width':self.thumbs_width,
-                'thumbs_margin':self.thumbs_margin,
-                'popup_width':self.popup_width,
-                'noun':self.noun,
-                'details_separator':self.details_separator,
-                'divide':"true" if self.divide else "false",
-                'divide_idx':self.divide_idx,
-                'divide_size':self.divide_size,
-                'instances':self.instances
+                "colors": self.colors,
+                "opacity": self.opacity,
+                "matrix": self.matrix,
+                "names": self.names,
+                "padding": self.padding,
+                "width": self.width,
+                "label_color": self.label_color,
+                "wrap_labels": "true" if self.wrap_labels else "false",
+                "credit": "true" if self.credit else "false",
+                "margin": self.margin,
+                "font_size": self.font_size,
+                "font_size_large": self.font_size_large,
+                "details": self.details,
+                "details_thumbs": self.details_thumbs,
+                "thumbs_font_size": self.thumbs_font_size,
+                "thumbs_width": self.thumbs_width,
+                "thumbs_margin": self.thumbs_margin,
+                "popup_width": self.popup_width,
+                "noun": self.noun,
+                "details_separator": self.details_separator,
+                "divide": "true" if self.divide else "false",
+                "divide_idx": self.divide_idx,
+                "divide_size": self.divide_size,
+                "instances": self.instances,
+                "verb": self.verb,
+                "symmetric": "true" if self.symmetric else "false",
             }
 
-            result = requests.post(url, json=payload, auth=(Chord.user,Chord.key))
+            result = requests.post(url, json=payload, auth=(Chord.user, Chord.key))
 
-            if(result.status_code == 200):
+            if result.status_code == 200:
                 self.html = result.text
             else:
                 raise Exception("API error.")
-
 
         else:
             """Generates the HTML using the Mako template."""
@@ -156,7 +162,7 @@ class Chord(object):
                 margin=self.margin,
                 font_size=self.font_size,
                 font_size_large=self.font_size_large,
-        )
+            )
 
     def to_html(self, filename="out.html"):
         """Outputs the generated HTML to a HTML file. """
