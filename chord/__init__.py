@@ -71,6 +71,7 @@ class Chord(object):
         instances=0,
         verb="occur together in",
         symmetric=True,
+        title="",
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -99,6 +100,7 @@ class Chord(object):
         self.instances = instances
         self.verb = verb
         self.symmetric = symmetric
+        self.title = title
 
     def __str__(self):
         return self.html
@@ -136,6 +138,7 @@ class Chord(object):
                 "instances": self.instances,
                 "verb": self.verb,
                 "symmetric": "true" if self.symmetric else "false",
+                "title": self.titke,
             }
 
             result = requests.post(url, json=payload, auth=(Chord.user, Chord.key))
