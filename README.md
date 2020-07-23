@@ -16,6 +16,7 @@
 
 
 # Changelog:
+- **23 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports figure titles.
 
 - **20 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports asymmetric mode using `symmetric=False`! You can also overide the `verb` used in the popup.
 
