@@ -138,7 +138,7 @@ class Chord(object):
                 "instances": self.instances,
                 "verb": self.verb,
                 "symmetric": "true" if self.symmetric else "false",
-                "title": self.titke,
+                "title": self.title,
             }
 
             result = requests.post(url, json=payload, auth=(Chord.user, Chord.key))
