@@ -73,6 +73,10 @@ class Chord(object):
         symmetric=True,
         title="",
         arc_numbers=False,
+        divide_left_label="",
+        divide_right_label="",
+        inner_radius_scale=0.39,
+        outer_radius_scale=1.1,
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -103,6 +107,10 @@ class Chord(object):
         self.symmetric = symmetric
         self.title = title
         self.arc_numbers = arc_numbers
+        self.divide_left_label = divide_left_label
+        self.divide_right_label = divide_right_label
+        self.inner_radius_scale = inner_radius_scale
+        self.outer_radius_scale = outer_radius_scale
 
     def __str__(self):
         return self.html
@@ -142,6 +150,10 @@ class Chord(object):
                 "symmetric": "true" if self.symmetric else "false",
                 "title": self.title,
                 "arc_numbers": self.arc_numbers,
+                "divide_left_label": self.divide_left_label,
+                "divide_right_label": self.divide_right_label,
+                "inner_radius_scale": self.inner_radius_scale,
+                "outer_radius_scale": self.outer_radius_scale,
             }
 
             result = requests.post(url, json=payload, auth=(Chord.user, Chord.key))

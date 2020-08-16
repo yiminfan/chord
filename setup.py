@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="chord",
-    version="0.1.1",
+    version="0.2.0",
     description="Python wrapper around d3-chord",
     long_description=long_description,
     long_description_content_type="text/markdown",
