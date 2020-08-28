@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
 
 setup(
     name="chord",
-    version="0.2.0",
-    description="Python wrapper around d3-chord",
+    version="0.2.1",
+    description="Python package for creating beautiful interactive Chord Diagrams.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/shahinrostami/chord",

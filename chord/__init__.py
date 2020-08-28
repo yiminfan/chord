@@ -39,7 +39,7 @@ mako.runtime.UNDEFINED = ""
 class Chord(object):
     user = ""
     key = ""
-    template_url = "https://shahinrostami.com/assets/chord/chord_0_0_12.tmpl"
+    template_url = "https://datacrayon.com/assets/chord/chord_0_0_12.tmpl"
 
     template = urllib.request.urlopen(template_url).read()
 
