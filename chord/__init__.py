@@ -77,6 +77,7 @@ class Chord(object):
         divide_right_label="",
         inner_radius_scale=0.39,
         outer_radius_scale=1.1,
+        allow_download=False,
     ):
         self.html = Chord.template
         self.matrix = matrix
@@ -111,6 +112,7 @@ class Chord(object):
         self.divide_right_label = divide_right_label
         self.inner_radius_scale = inner_radius_scale
         self.outer_radius_scale = outer_radius_scale
+        self.allow_download = allow_download
 
     def __str__(self):
         return self.html
@@ -149,11 +151,12 @@ class Chord(object):
                 "verb": self.verb,
                 "symmetric": "true" if self.symmetric else "false",
                 "title": self.title,
-                "arc_numbers": self.arc_numbers,
+                "arc_numbers": "true" if self.arc_numbers else "false",
                 "divide_left_label": self.divide_left_label,
                 "divide_right_label": self.divide_right_label,
                 "inner_radius_scale": self.inner_radius_scale,
                 "outer_radius_scale": self.outer_radius_scale,
+                "allow_download": "true" if self.allow_download else "false",
             }
 
             result = requests.post(url, json=payload, auth=(Chord.user, Chord.key))
