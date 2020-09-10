@@ -16,9 +16,16 @@
 
 
 # Changelog:
+
+- **29 August 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports enabling a Download to image button.
+
+- **16 August 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports radius scaling and bipartite titles.
+
+- **13 August 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports Arc numbers.
+
 - **23 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports figure titles.
 
-- **20 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports asymmetric mode using `symmetric=False`! You can also overide the `verb` used in the popup.
+- **20 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports asymmetric mode using `symmetric=False`! You can also override the `verb` used in the popup.
 
 - **14 July 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) can now be enabled by entering your [license key](https://store.shahinrostami.com/product/chord-pro/).
 
@@ -27,7 +34,7 @@
 
 - **22 May 2020** - Optimisation and bug fixes have massively improved the interactive performance of the visualisation (**Rebuild your chord diagrams** to take advantage of this change).
 
-- **21 May 2020** - Please update to the latest version of `chord`. Backwards compatability has been introduced, so from this version onwards, new versions won't break older ones!
+- **21 May 2020** - Please update to the latest version of `chord`. Backwards compatibility has been introduced, so from this version onwards, new versions won't break older ones!
 
 ![Example Image](images/2.gif)
 
@@ -43,7 +50,7 @@ I wanted to do a section on Chord Diagrams for my book, [Data Is Beautiful](http
 
 With Python in mind, there are many libraries available for creating Chord diagrams, such as [Plotly](https://plotly.com/python/v3/filled-chord-diagram/), [Bokeh](http://docs.bokeh.org/en/0.12.0/docs/gallery/chord_chart.html), and a few that are lesser-known. However, I wanted to use the implementation from [d3](https://observablehq.com/@d3/chord-diagram?collection=@d3/d3-chord) because it can be customised to be highly interactive and to look beautiful.
 
-I couldn't find anything that ticked all the boxes, [so I made](https://pypi.org/project/chord/) a wrapper around d3-chord myself. It took some time to get it working, but I wanted to hide away everything behind a single constructor and method call. The tricky part was enabling multiple chord diagrams on the same page, and then loading resources in a way that would support Jupyter Lab.
+I couldn't find anything that ticked all the boxes, [so I made](https://pypi.org/project/chord/) a wrapper around d3-chord myself. It took some time to get it working, but I wanted to hide away everything behind a single constructor and method call. The tricky part was enabling multiple chord diagrams on the same page and then loading resources in a way that would support Jupyter Lab.
 
 The primary support is for `Jupyter Lab` (not the older `Jupyter Notebook`).
 
@@ -94,7 +101,7 @@ You can see the actual interactive examples [on this page](https://shahinrostami
 
 ## The Dataset
 
-The focus for this section will be the demonstration of the `chord` package. To keep it simple, we will use synthetic data that illustrates the co-occurrences between movie genres within the same movie.
+The focus of this section will be the demonstration of the `chord` package. To keep it simple, we will use synthetic data that illustrates the co-occurrences between movie genres within the same movie.
 
 ```python
 matrix = [
@@ -119,7 +126,7 @@ Chord(matrix, names).show()
 
 ![Example Image](images/1.png)
 
-You can also save it to a HTML file.
+You can also save it to an HTML file.
 
 ```python
 Chord(matrix, names).to_html()
