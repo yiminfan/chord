@@ -1,4 +1,4 @@
-![ChordPRO](https://newsletter.stamilabs.com/uploads/ac_ducks_2.png)
+![ChordPRO](https://newsletter.datacrayon.com/uploads/ac_ducks_2.png)
 
 # Chord PRO Released
 
@@ -16,6 +16,8 @@
 
 
 # Changelog:
+
+- **26 October 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports Downloading to image when multiple Chord diagrams appear on the same page.
 
 - **03 October 2020** - [`Chord PRO`](https://store.shahinrostami.com/product/chord-pro/) now supports visualising [occurrences as well as co-occurrences](https://github.com/shahinrostami/chord/issues/18#issuecomment-703174362).
 
