@@ -221,6 +221,21 @@ Chord(matrix, names, padding=0.3).show()
 </ol>
 </div>
 
+# Data and Templates
+
+## Chord (free) package
+
+The `chord` package downloads the Chord Diagram template from the `DataCrayon.com` (AWS hosted) server to generate the visualisation. The templates are maintained independently (bug fixes and optimisations). This means with a standard configuration, you will need to have an Internet connection to generate a visualisation.
+
+Your parameter arguments (e.g. matrix, colors, etc) are not sent to the `DataCrayon.com` server.
+
+## Chord PRO (licensed) package
+
+The `chord` package switches to `PRO` mode when a username and license are specified. This enables the use of all the `PRO` features.
+
+This uses the Chord PRO API service hosted on the `DataCrayon.com` (AWS hosted) server to generate your visualisation. Your parameter arguments (e.g. matrix, colors, etc) are sent to the API, which then generates and returns your HTML content.
+
+
 # Credits
 
 - d3-chord, Mike Bostock.
