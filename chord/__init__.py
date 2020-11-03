@@ -52,7 +52,7 @@ class Chord(object):
         padding=0.01,
         width=700,
         label_color="#454545",
-        wrap_labels=True,
+        wrap_labels=False,
         margin=0,
         credit=False,
         font_size="16px",
