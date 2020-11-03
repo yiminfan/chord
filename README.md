@@ -231,7 +231,7 @@ The `chord` package downloads the Chord Diagram template from the `DataCrayon.co
 
 Your parameter arguments (e.g. matrix, colors, etc) are not sent to the `DataCrayon.com` server.
 
-## Chord PRO (full featured) package
+## Chord PRO (full-featured) package
 
 The `chord` package switches to `PRO` mode when a username and license are specified. This enables the use of all the `PRO` features.
 
