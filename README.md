@@ -88,6 +88,8 @@ Chord(matrix, names).show()
 
 ## Defaults
 
+### Chord (free)
+
 ```python
 Chord(self,
         matrix,
@@ -97,9 +99,51 @@ Chord(self,
         padding=0.01,
         width=700,
         label_color="#454545",
-        wrap_labels=True,
+        wrap_labels=False,
         margin=0,
         credit=False,
+        font_size="16px",
+        font_size_large="20px"      
+    )
+```
+
+### Chord Pro
+
+```python
+Chord(self,
+        matrix,
+        names,
+        colors="d3.schemeSet1",
+        opacity=0.8,
+        padding=0.01,
+        width=700,
+        label_color="#454545",
+        wrap_labels=False,
+        margin=0,
+        credit=False,
+        font_size="16px",
+        font_size_large="20px",
+        details=[],
+        details_thumbs=[],
+        thumbs_width=85,
+        thumbs_margin=5,
+        thumbs_font_size=14,
+        popup_width=350,
+        noun="instances",
+        details_separator=", ",
+        divide=False,
+        divide_idx=0,
+        divide_size=0.5,
+        instances=0,
+        verb="occur together in",
+        symmetric=True,
+        title="",
+        arc_numbers=False,
+        divide_left_label="",
+        divide_right_label="",
+        inner_radius_scale=0.39,
+        outer_radius_scale=1.1,
+        allow_download=False,        
     )
 ```
 
