@@ -1,0 +1,189 @@
+% plot the heatmap of connectivity numbers among different brain regions
+% FC group test plot
+cor_group = {'ALLT0vsScoreT1','AST0vsScoreT1','ASBCIT0vsScoreT1','CTLT0vsScoreT1',...
+    'ALLvsALLScore','ALLASvsALLScore','ALLASBCIvsALLScore','ALLCTLvsALLScore',...
+    'ALLT0vsDeltaScore','AST0vsDeltaScore','ASBCIT0vsDeltaScore','CTLT0vsDeltaScore',...
+    'DeltaALLvsScoreT1','DeltaASvsScoreT1','DeltaASBCIvsScoreT1','DeltaCTLvsScoreT1',...
+    'DeltaALLvsDeltaScore','DeltaASvsDeltaScore','DeltaASBCIvsDeltaScore','DeltaCTLvsDeltaScore'};
+
+FC_type ={'FC_coh'};%,'FC_plv','FC_pli','FC_wpli','FC_rmbadchan_wpli','FC_rmbadchan_coh','FC_rmbadchan_plv','FC_rmbadchan_pli'};
+band_name = {'Delta','Theta','Alpha','Beta','Gamma','ALLBand'};
+score_name = {'DFAROM','DFPROM','PFAROM ','PFPROM ','MAS','DFStrength','pFStrength','FMAL','BBS','PASS','EOTrajectoryLength','ECTrajectoryLength',...
+    'EOEllipseArea' ,'ECEllipseArea','EOFBSD' ,'EOLMSD' ,'EOFBAS' ,'ECFBAS' ,'AFDF10Degree' ,'AFPF30Degree',...
+    'Timeof10m' ,'Distanceof6minues' ,'SBG','Holden' ,'ADL' };
+%nodefile =  'E:\mmdps\atlas\eeg_59\eeg_59.node';
+%bnv_mesh = 'E:\PC\BrainNetViewer2019\Data\SurfTemplate\BrainMesh_ICBM152_smoothed.nv';
+%outputpath = 'F:\HAOZEXUAN\RESULT\regionheatmap\';
+
+
+for type = FC_type
+    
+    %-------------------------------------------------------------------------
+    % initialize cells and index for later use
+    %-------------------------------------------------------------------------
+    group_net = zeros(14,14,4);
+    std_net1 = {};
+    std_net2 = {};
+    std_net3 = {};
+    std_net4 = {};
+    std_net5 = {};
+    net1 = 1;
+    net2 = 1;
+    net3 = 1;
+    net4 = 1;
+    net5 = 1;
+    n_band = 0;
+    n_score = 0;
+    
+
+    
+    %cd( 'F:\HAOZEXUAN\SCIENTIFIC RESEARCH\EEG\result\stats_sig_diff_cor_2s\')
+    % load clinical basic data
+    corr_score = importdata([type{1} '_' 'corr_score.mat']);
+    rho = importdata([type{1} '_' 'rho.mat']);
+    test_result = importdata([type{1} '_' 'test_result.mat']);
+    median_diff = importdata([type{1} '_' 'median_diff.mat']);
+    % 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟?
+    sig_diff = sign(median_diff).*(0.05-double(test_result<0.05).*test_result);
+    sig_diff(sig_diff==0.05|sig_diff==-0.05)=NaN;
+    sig_cor = sign(rho).*(0.05-double(corr_score<0.05).*corr_score);
+    sig_cor(sig_cor==0.05|sig_cor==-0.05)=NaN;
+    sig_diff_cor = sign(rho).*sign(repmat(sig_diff,1,1,1,5,25)).*sqrt(abs(repmat(sig_diff,1,1,1,5,25).* sig_cor));
+    % 使锟斤拷brainnetviewr 锟斤拷图
+    
+    
+    prefix = type{1};
+    for score_num = 1:length(score_name)
+        %-------------------------------------------------------------------------
+        %cd(outputpath);
+        %if ~exist([outputpath,score_name{score_num}],'file')
+            %mkdir(score_name{score_num});
+        %end
+        %cd([outputpath score_name{score_num} '\']);
+        for band_num = 1:length(band_name)
+            for group_num = 1:length(cor_group)
+                
+                figurename = [prefix '_' cor_group{group_num} '_' score_name{score_num} '_' band_name{band_num}];
+                netdata = squeeze(sig_diff_cor(:,:,band_num,group_num,score_num));
+                if isempty(find(~isnan(netdata),1))
+                    continue;
+                end
+                netdata(~isnan(netdata)) = 1;
+                netdata(isnan(netdata)) = 0;
+                region_idx = [1 11 14 20 23 27 30 31 32 34 44 47 53 56 60];
+                new_net = zeros(length(region_idx)-1,length(region_idx)-1);
+                node_realign = [3,5,7,10,12,14,16,19,21,23,28,30,32,36,38,40,45,47,49,25,34,42,52,54,56,59,1,8,17,26,43,50,57,2,4,6,9,11,13,15,18,20,22,27,29,31,35,37,39,44,46,48,24,33,41,51,53,55,58];
+                factor = [1,1,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3,3,3,4,4,4,5,5,5,5,6,6,6,7,8,9,9,10,10,10,10,10,10,10,10,10,10,11,11,11,12,12,12,12,12,12,13,13,13,14,14,14,14];
+                for i = 1:length(region_idx)-1
+                    idx = node_realign(region_idx(i):region_idx(i+1)-1);
+                    temp_1 = netdata(idx,:);
+                    temp_2 = temp_1(:, node_realign);
+                    temp = temp_2.*repmat(factor,length(idx),1);
+                    if isempty(find(temp, 1))
+                        continue;
+                    end
+                    stats = tabulate(temp(:));
+                    x_idx = find(stats(:,1));
+                    new_net(i,stats(x_idx,1)) = stats(x_idx,2);
+                    
+                end
+                %-------------------------------------------------------------------------
+                % add identical nets to the corresponding cell
+                % 
+                %-------------------------------------------------------------------------
+                
+                if group_num <= 4 % for the first line of cor_group
+                   group_net(:,:,group_num) = new_net; 
+                   if group_num == 4
+                      std_net1{net1} = group_net;
+                      net1 = net1+1;
+                      group_net = zeros(14,14,4);
+                   end
+                end
+                if group_num > 4 && group_num <= 8 % for the second line of cor_group
+                   group_net(:,:,group_num-4) = new_net; 
+                   if group_num == 4
+                      std_net2{net2} = group_net;
+                      net2 = net2+1;
+                      group_net = zeros(14,14,4);
+                   end
+                end
+                if group_num > 8 && group_num <= 12 % for the third line of cor_group
+                   group_net(:,:,group_num-8) = new_net; 
+                   if group_num == 4
+                      std_net3{net3} = group_net;
+                      net3 = net3+1;
+                      group_net = zeros(14,14,4);
+                   end 
+                end
+                if group_num > 12 && group_num <= 16 % for the fourth line of cor_group
+                   group_net(:,:,group_num-12) = new_net; 
+                   if group_num == 4
+                      std_net4{net4} = group_net;
+                      net4 = net4+1;
+                      group_net = zeros(14,14,4);
+                   end
+                end
+                if group_num > 16 && group_num <= 20 % for the fourth line of cor_group
+                  group_net(:,:,group_num-16) = new_net; 
+                   if group_num == 4
+                      std_net5{net5} = group_net;
+                      net5 = net5+1;
+                      group_net = zeros(14,14,4);
+                   end
+                end
+                
+            end
+            
+            
+        end
+    end
+    net_all = {std_net1, std_net2, std_net3, std_net4, std_net5};
+    std_all = cell(5);
+    std_cell = cell(25*6);
+    %-------------------------------------------------------------------------
+    % then, store the matrix in a heatmap to record the degree of
+    % difference/similarity
+    %-------------------------------------------------------------------------
+    for i = 1:5 % for each gorup matrix
+        for j = 1:25*6 
+            tmp_cell = net_all{i};
+            tmp_matrix = tmp_cell{j};
+            for r = 1:14 % each row in one matrix
+                for c = 1:14 % each column in one matrix
+                    array = zeros(1,4);
+                    array = tmp_matrix(r,c,:);
+                    std_array = std(array);
+                    std_matrix(r,c) = std_array;
+                end
+            end
+            std_cell{j} = std_matrix; 
+            % draw the graph
+            columns_name = {'LF','LC','LP','LT','LO','CF','CC','CP','CO','RF','RC','RP','RT','RO'};
+            temp_prefix = split(prefix,'_');
+            
+            % calculate the band number and the score number
+            if mod(j,6)==0
+               n_band = 6;
+               n_score = floor(j/6);
+            else
+               n_band = mod(j,6);
+               n_score = floor(j/6)+1;
+            end
+            
+            h = heatmap(columns_name,columns_name, std_matrix);
+            h.Title = [temp_prefix{1} '\_' temp_prefix{2} '\_' 'group' int2str(i) ' score' int2str(n_score) ' band' int2str(n_band)];
+            figurename = [prefix '_group' int2str(i) '_score' int2str(n_score) '_band' int2str(n_band)];
+            print('-dpng','-r300',[figurename,'.jpg']);
+            close
+        end
+        std_all{i} = std_cell;
+        std_cell = cell(25*6);
+    end
+    
+end
+   
+
+
+
+
